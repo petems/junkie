@@ -10,6 +10,9 @@ gem 'json'
 gem 'httparty'
 gem 'faraday-http-cache'
 gem 'puma'
+gem 'sass'
+gem 'bourbon'
+gem 'neat'
 
 group :developmnet do
   gem 'netrc'
