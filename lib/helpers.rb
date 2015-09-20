@@ -1,6 +1,5 @@
 module Helpers
   def logout
-    return unless session[:user]
     session[:user] = nil
     session[:token] = nil
   end

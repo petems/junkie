@@ -1,4 +1,5 @@
 describe 'app_helper' do
+
   let(:octo_client_ready) {
     instance_double('Octokit::Client',
       issue_comments: parsed_fixture_from('ready_issue_comments'),
