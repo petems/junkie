@@ -47,41 +47,34 @@ module Helpers
     client
   end
 
-  def can_merge_it?(issue_comments)
+  def can_merge_it?(pull)
     ships_regex = /(:\+1:)|(:shipit:)/
 
-    approves = issue_comments.select { |ic|
+    approves = pull[:issue_comments].select { |ic|
       ships_regex.match ic[:body]
     }
 
     (approves.size > 1)
   end
 
-  def reviewed_it?(issue_comments)
+  def reviewed_it?(pull)
     ships_regex = /(:\+1:)|(:shipit:)/
-    ready = issue_comments.select { |ic|
+    ready = pull[:issue_comments].select { |ic|
       (ic[:user][:id] == session[:user_id]) && ships_regex.match(ic[:body])
     }
 
     (ready.size > 0)
   end
 
-  def comments?(pull_comments)
-    pull_comments.size > 0 ? true : false
-    commented = pull_comments.select { |pc| pc[:user][:id] == session[:user_id] }
+  def comments?(pull)
+    pull[:pull_comments].size > 0 ? true : false
+    commented = pull[:pull_comments].select { |pc| pc[:user][:id] == session[:user_id] }
 
     (commented.size > 0)
   end
 
-  def icon_merge(pull)
-    can_merge_it?(pull[:issue_comments]) ? 'merge ready' : 'merge pending'
+  def icon_for(pull, method)
+    state = send(method, pull) ? "ready" : "pending"
   end
 
-  def icon_review(pull)
-    reviewed_it?(pull[:issue_comments]) ? 'review ready' : 'review pending'
-  end
-
-  def icon_comment(pull)
-    comments?(pull[:pull_comments]) ? 'comment ready' : 'comment pending'
-  end
 end
