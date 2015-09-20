@@ -1,0 +1,22 @@
+[
+  {
+    "html_url": "https://github.com/org/repo/pull/666#issuecomment-666666",
+    "id": 666666,
+    "user": {
+      "login": "user",
+      "id": 666667,
+      "type": "User"
+    },
+   "body": "you can't merge it yet :sad:"
+  },
+  {
+    "html_url": "https://github.com/org/repo/pull/666#issuecomment-666666",
+    "id": 666666,
+    "user": {
+      "login": "another_user",
+      "id": 666668,
+      "type": "User"
+    },
+    "body": "lot of text and :shipit: :smiley:"
+  }
+]

@@ -14,6 +14,7 @@ gem 'puma'
 group :developmnet do
   gem 'netrc'
   gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :test do
