@@ -19,7 +19,6 @@ Octokit.middleware = stack
 get '/' do
   if session[:user]
     client = set_client
-    # user_login = client.user.login
     user_login = session[:user]
     orgs = client.orgs << { login: user_login }
     users_orgs = orgs.map { |o| "user:#{o[:login]}"}.join(' ')
