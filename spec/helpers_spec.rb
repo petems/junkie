@@ -1,17 +1,17 @@
 describe Helpers do
 
-  let(:octo_client_ready) {
-    instance_double('Octokit::Client',
+  let(:pulls_ready) {
+    {
       issue_comments: parsed_fixture_from('ready_issue_comments'),
       pull_comments: parsed_fixture_from('ready_pull_comments')
-    )
+    }
   }
 
-  let(:octo_client_not_ready) {
-    instance_double('Octokit::Client',
+  let(:pulls_not_ready) {
+    {
       issue_comments: parsed_fixture_from('not_ready_issue_comments'),
       pull_comments: parsed_fixture_from('not_ready_pull_comments')
-    )
+    }
   }
 
   let(:session) {
@@ -23,13 +23,13 @@ describe Helpers do
 
   context '#can_merge_it?' do
     it 'returns true if pull can be merged' do
-      result = can_merge_it?(octo_client_ready.issue_comments('org/repo',666))
+      result = can_merge_it?(pulls_ready)
 
       expect(result).to be_truthy
     end
 
     it 'returns false if pull can not be merged' do
-      result = can_merge_it?(octo_client_not_ready.issue_comments('org/repo',666))
+      result = can_merge_it?(pulls_not_ready)
 
       expect(result).to be_falsey
     end
@@ -37,27 +37,27 @@ describe Helpers do
 
   context '#reviewed_it?' do
     it "returns false if you didn't reviewed yet" do
-      result = reviewed_it?(octo_client_not_ready.issue_comments('org/repo',666))
+      result = reviewed_it?(pulls_not_ready)
 
       expect(result).to be_falsey
     end
 
     it "returns true if you reviewed it" do
-      result = reviewed_it?(octo_client_ready.issue_comments('org/repo',666))
+      result = reviewed_it?(pulls_ready)
 
       expect(result).to be_truthy
     end
   end
 
-    context '#comments?' do
+  context '#comments?' do
     it "returns true if you commented it" do
-      result = comments?(octo_client_ready.pull_comments('org/repo',666))
+      result = comments?(pulls_ready)
 
       expect(result).to be_truthy
     end
 
     it "returns false if you didn't commented it" do
-      result = comments?(octo_client_not_ready.pull_comments('org/repo',666))
+      result = comments?(pulls_not_ready)
 
       expect(result).to be_falsey
     end
