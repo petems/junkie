@@ -1,15 +1,15 @@
 describe 'app_helper' do
   let(:octo_client_ready) {
     instance_double('Octokit::Client',
-      issue_comments: return_parsed_from('ready_issue_comments'),
-      pull_comments: return_parsed_from('ready_pull_comments')
+      issue_comments: parsed_fixture_from('ready_issue_comments'),
+      pull_comments: parsed_fixture_from('ready_pull_comments')
     )
   }
 
   let(:octo_client_not_ready) {
     instance_double('Octokit::Client',
-      issue_comments: return_parsed_from('not_ready_issue_comments'),
-      pull_comments: return_parsed_from('not_ready_pull_comments')
+      issue_comments: parsed_fixture_from('not_ready_issue_comments'),
+      pull_comments: parsed_fixture_from('not_ready_pull_comments')
     )
   }
 
@@ -56,7 +56,7 @@ describe 'app_helper' do
     expect(result).to be_falsey
   end
 
-  def return_parsed_from(file_name)
+  def parsed_fixture_from(file_name)
     file = File.open("spec/support/fixtures/#{file_name}.json", 'rb').read
 
     JSON.parse(file, symbolize_names: true)
