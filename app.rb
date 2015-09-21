@@ -1,20 +1,5 @@
-require 'sinatra'
-require 'sinatra/flash'
-require 'octokit'
-require 'httparty'
-require 'faraday-http-cache'
-require 'json'
-require './app_helpers'
-
 enable :sessions
 set :session_secret, (ENV["SESSION_SECRET"] || "this is session secret")
-
-stack = Faraday::RackBuilder.new do |builder|
-  builder.use Faraday::HttpCache
-  builder.use Octokit::Response::RaiseError
-  builder.adapter Faraday.default_adapter
-end
-Octokit.middleware = stack
 
 get '/' do
   if session[:user]
@@ -115,3 +100,5 @@ get '/pull_icons' do
 
   erb :'_pull_icons', layout: false, locals: { pull: pull }
 end
+
+
