@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.2.1"
+ruby "2.2.2"
 
 gem 'sinatra'
 gem 'sinatra-flash'
@@ -25,3 +25,4 @@ group :test do
   gem 'capybara'
   gem 'codeclimate-test-reporter', require: nil
 end
+
