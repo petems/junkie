@@ -1,0 +1,107 @@
+img.button-github {
+  height: 60%;
+  margin: -5px 3px;
+}
+
+div.icon-container {
+  width: 100px;
+}
+
+span {
+  &.icon {
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin: 3px;
+    /*font: 0/0 a;*/
+    text-shadow: none;
+    color: transparent;
+    &.ready {
+      background-color: #6cc644;
+    }
+    &.pending {
+      background-color: #bd2c00;
+    }
+    &.loading {
+      background-image: url('/images/silly_walk.gif');
+      width: 40px;
+      height: 40px;
+      position: relative;
+      /* Chrome, Safari, Opera */
+      -webkit-animation: silly_walking 23s infinite;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-direction: alternate;
+      animation: silly_walking 23s infinite;
+      animation-timing-function: linear;
+      animation-direction: alternate;
+    }
+    &.merge {
+      background-image: url('/images/git-merge.png');
+    }
+    &.review {
+      background-image: url('/images/thumbs-up.png');
+    }
+    &.comment {
+      background-image: url('/images/comments.png');
+    }
+    &.alpha {
+      &.merge {
+        background-image: url('/images/git-merge-alpha.png');
+      }
+      &.review {
+        background-image: url('/images/thumbs-up-alpha.png');
+      }
+      &.comment {
+        background-image: url('/images/comments-alpha.png');
+      }
+    }
+  }
+  &.logo {
+    background-image: url('/images/junkie_logo_lines.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    float: left;
+    height: 85px;
+    width: 85px;
+  }
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes silly_walking {
+  0% { left: 0px; }
+  50% { left: 90px; }
+  100% { left: 0px; }
+}
+
+
+@keyframes silly_walking {
+  0% { left: 0px; }
+  50% { left: 90px; }
+  100% { left: 0px; }
+}
+
+
+h1.logo {
+  line-height: inherit;
+}
+
+div {
+  &.center {
+    text-align: center;
+    margin: 0 auto;
+  }
+  &.justify p {
+    text-align: justify;
+  }
+}
+
+strong {
+  &.pending {
+    color: #bd2c00;
+  }
+  &.ready {
+    color: #6cc644;
+  }
+}
