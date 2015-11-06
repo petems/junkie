@@ -41,11 +41,7 @@ get '/' do
         pull[:number] = captures[:number]
       }
     }
-    @pulls = @pulls.sort_by { |p|
-      p[:org]
-    }.group_by { |p|
-      p[:org]
-    }
+    @pulls = @pulls.sort_by{ |p| p[:org] }.group_by{ |p| p[:org] }
 
      erb :'pulls'
   else
